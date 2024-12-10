@@ -1,11 +1,10 @@
 import requests
 import time
-import logging
 from concurrent.futures import ThreadPoolExecutor
 
 proxies = {
-    "US": "http://login:password@host:port",
-    "JP": "http://login:password@host:port",
+    "Name1": "http://login:password@host:port",
+    "Name2": "http://login:password@host:port",
 }
 
 test_urls = {
