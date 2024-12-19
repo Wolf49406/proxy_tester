@@ -8,7 +8,7 @@ proxies = {
 }
 
 test_urls = {
-    "ping": "https://google.com",
+    "ping": "https://ifconfig.me/",
     "speed": "https://proof.ovh.net/files/10Mb.dat",
 }
 
@@ -21,6 +21,7 @@ class ProxyTester:
         self.proxies = proxies
         self.test_urls = test_urls
         self.stability_attempts = stability_attempts
+        self.round_counter = 0
 
     def test_ping(self, proxy_url):
         try:
@@ -34,8 +35,11 @@ class ProxyTester:
 
     def test_stability(self, proxy_url):
         latencies = []
+        
         for _ in range(self.stability_attempts):
             latency = self.test_ping(proxy_url)
+            self.round_counter += 1
+            print(f"Round {self.round_counter} / {stability_test_attempts * len(self.proxies)} complete...")
             if latency:
                 latencies.append(latency)
         if latencies:
